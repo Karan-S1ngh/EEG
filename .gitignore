@@ -1,0 +1,4 @@
+__pycache__/
+.qodo
+.env
+eeg_mat_files/
