@@ -35,19 +35,20 @@ def train_nlp_model():
     df_clean = df.dropna(subset=['Dream_content', 'Dream_emotion'])
 
     # Use our bug-fixed 3-class mapping
-    def map_emotion(emotion):
+    def map_emotion_2class(emotion):
         emotion = str(emotion).lower()
-        if 'unhappy' in emotion or 'sad' in emotion:
-            return 'Negative'
-        if 'happy' in emotion:
-            return 'Positive'
         if 'calm' in emotion:
             return 'Calm'
-        return None
+        # Group happy, unhappy, sad into 'Not Calm'
+        if 'happy' in emotion or 'unhappy' in emotion or 'sad' in emotion:
+            return 'Not Calm'
+        return None # If neither, drop
+
+    df_clean.loc[:, 'Emotion_Label'] = df_clean['Dream_emotion'].apply(map_emotion_2class)
 
     # Apply the mapping safely
     df_clean = df_clean.copy() # Avoid SettingWithCopyWarning
-    df_clean.loc[:, 'Emotion_Label'] = df_clean['Dream_emotion'].apply(map_emotion)
+    df_clean.loc[:, 'Emotion_Label'] = df_clean['Dream_emotion'].apply(map_emotion_2class)
     df_model = df_clean.dropna(subset=['Emotion_Label'])
 
     print(f"Cleaned data for NLP modeling: {df_model.shape[0]} samples.")

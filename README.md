@@ -44,7 +44,7 @@ Root Folder
 │   ├── multimodal_full_model.pkl            # EEG Power + Entropy + Text (~68%)
 │   ├── multimodal_model.pkl                 # 🏆 BEST MODEL — EEG Power + Text (93.5%)
 │   ├── multimodal_model_3class.pkl          # EEG Power + Text (3-class, ~62%)
-│   ├── nlp_emotion_model.pkl                # NLP Text only (TF-IDF)
+│   ├── nlp_emotion_model.pkl                # NLP Text only (TF-IDF)  (`60%)
 │   ├── video_predictor_rf.pkl               # EEG→Video RF model (81.2%)
 │   ├── scaler.pkl / scaler_2class_calm.pkl  # Preprocessing scalers
 │   └── entropy_scaler_*.pkl                 # Scalers for entropy models
